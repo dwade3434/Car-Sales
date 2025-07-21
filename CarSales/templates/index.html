@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body{
+            background-image: url(/static/assets/hero-image-2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        main {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        content{
+            justify-content: center;
+            padding: 200px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <content>
+            <form action="/login" method="POST">
+                <h3>Login</h3>
+                <p><b>Please enter an email address and password to login.</b></p>
+                <input type="email" name="username" placeholder="Email" size="30" required><br><br>
+                <input type="password" name="password" placeholder="Password" size="30" required><br><br>
+                <input type="submit" value="Login"><br><br>
+                <p><b>Or select </b><a href="/register">Register a new account</a></p>
+            </form>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </content>
+    </main>
+</body>
+</html>
+

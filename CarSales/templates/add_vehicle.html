@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            background-image: url(/static/assets/images.jpg);
+            background-repeat: no-repeat;
+            background-position: top center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            grid: 2, 1fr;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            padding: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+        title_text {
+            padding: 100px;
+        }
+        input, select {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .button {
+            background-color: darkorange;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <menu>
+            <div><a href="{{ url_for('home') }}">Home</a></div>
+            <div><a href="{{ url_for('inventory') }}">Inventory</a></div>
+            <div><a href="{{ url_for('sales') }}">Sales</a></div>
+        </menu>
+        <title_text>
+            <h3>New Vehicle Details</h3>
+        </title_text>
+        <form action="/add_new" method="POST">
+            <input type="text" name="type" placeholder="Vehicle Type" size="25"><br><br>
+            <input type="text" name="make" placeholder="Make" size="25"><br><br>
+            <input type="text" name="model" placeholder="Model" size="25"><br><br>
+            <input type="text" name="year" placeholder="Year" size="25"><br><br>
+            <input type="text" name="vin" placeholder="Vin Number" size="38"><br><br>
+            <input type="text" name="color" placeholder="Color" size="25"><br><br>
+            <input type="text" name="miles" placeholder="Mileage" size="38"><br><br>
+            <input type="text" name="condition" placeholder="Condition" size="25"><br><br>
+            <input type="text" name="price" placeholder="Price" size="30"><br><br>
+            <input type="text" name="description" placeholder="Enter description details" size="60" height="60"><br><br>
+            <input type="submit" value="Submit"><br><br>
+        </form>
+
+    </main>
+
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            background-image: url(/static/assets/images.jpg);
+            background-repeat: no-repeat;
+            background-position: top center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .button {
+            background-color: darkorange;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .inventory-section {
+            margin-top: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <menu>
+            <div><a href="{{ url_for('home') }}">Home</a></div>
+            <div><a href="{{ url_for('sales') }}">Sales</a></div>
+            <div><a href="{{ url_for('save_to_database') }}">Add Vehicle</a></div>
+        </menu>
+
+        <section>
+            <form action="{{ url_for('inventory') }}" method="POST">
+                <input class="filter-item" type="text" name="year" placeholder="Year">
+                <select class="filter-item" name="make">
+                    <option value="">Select Make</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Ford">Ford</option>
+                </select>
+                <select class="filter-item" name="model">
+                    <option value="">Select Model</option>
+                    <option value="Corolla">Corolla</option>
+                    <option value="F-150">F-150</option>
+                </select>
+                <input class="button" type="submit" value="Apply">
+            </form>
+
+            <div class="inventory-section">
+                <h3>Inventory</h3>
+                {% if inventory %}
+                <table border="1">
+                    <thead>
+                        <tr>
+                            {% for col in inventory[0].keys() %}
+                            <th>{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in inventory %}
+                        <tr>
+                            {% for value in item.values() %}
+                            <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No inventory found matching your criteria.</p>
+                {% endif %}
+            </div>
+
+            {% if error %}
+            <p style="color:red;">{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

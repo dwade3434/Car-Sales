@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        vehicle_data {
+            display: grid;
+            grid-template-columns: repeat(2, 3fr);
+            gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+            grid-template-columns: fit-content(700px);
+        }
+
+        div {
+            width: 160px;
+            border-style: solid;
+            display: inline-block;
+            border-width: 0.5px;
+            border-color: lightgray;
+            padding: 20px;
+        }
+
+        menu {
+            float: left;
+            grid-column: 1/2;
+            grid-row: 1;
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            background-color: lightgrey;
+        }
+
+        .button {
+            float: right;
+            width: 150px;
+            height: 50px;
+            background-color: darkorange;
+        }
+        image {
+            float: left;
+            grid-column: 1/2;
+            grid-row: 2;
+            border-style: solid;
+            display: inline-block;
+            border-width: 0.5px;
+            border-color: black;
+            border-left: 5px solid gray;
+            padding: 50px;
+            height: 450px;
+            width: 350px;
+        }
+        details {
+            float: left;
+            grid-column: 1/2;
+            grid-row: 3;
+            border-style: solid;
+            display: inline-block;
+            border-width: 0.5px;
+            border-color: black;
+            border-left: 5px solid gray;
+            padding: 50px;
+            height: 450px;
+            width: 350px;
+        }
+        description {
+            float: left;
+            grid-column: 2/2;
+            grid-row: 3;
+            border-style: solid;
+            display: inline-block;
+            border-width: 0.5px;
+            border-color: black;
+            border-left: 5px solid gray;
+            padding: 50px;
+            height: 450px;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <menu>
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+            <br>
+            <div>
+                <a href="inventory.html">Inventory</a>
+            </div>
+            <br>
+            <div>
+                <a href="sales.html">Sales</a>
+            </div>
+            <br>
+        </menu>
+        <vehicle_data>
+            <image>
+
+            </image>
+            <details>
+                <h3>Vehicle Info</h3>
+            </details>
+            <description>
+                <h3>Description</h3>
+
+            </description>
+        </vehicle_data>
+     </main>
+ </body>
+</html>

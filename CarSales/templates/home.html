@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        intro {
+            width: 100vw;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            padding: 20px;
+        }
+
+        img {
+            width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+            a:hover {
+                color: darkorange;
+            }
+    </style>
+</head>
+<body>
+    <intro>
+        <h1>Welcome to Carventory</h1>
+    </intro>
+    <main>
+        
+        <table>
+            <tr>
+                <td>
+                    <img src="/static/assets/bcar.png" alt="Inventory Icon" />
+                    <a href="{{ url_for('inventory') }}">Veiw Inventory</a>
+                </td>
+                <td>
+                    <img src="/static/assets/images (1).png" alt="Sales Icon" />
+                    <a href="{{ url_for('sales') }}">Veiw Sales Report</a>
+                </td>
+                <td>
+                    <img src="/static/assets/images (2).png" alt="Add Vehicle Icon" />
+                    <a href="{{ url_for('save_to_database') }}">Add a Vehicle</a>
+                </td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>
