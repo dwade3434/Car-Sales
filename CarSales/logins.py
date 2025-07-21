@@ -13,7 +13,6 @@ DB_CONFIG = {
     "port": "5432"
 }
 
-# Authentication check decorator
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -22,11 +21,9 @@ def login_required(f):
         return f(*args, **kwargs)
     return wrap
 
-# Function to get a database connection
 def get_db_connection():
     return psycopg2.connect(**DB_CONFIG)
 
-# Registration route
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -42,7 +39,6 @@ def register():
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cursor:
-                    # Check if username already exists
                     cursor.execute("SELECT username FROM credentials WHERE username = %s", (username,))
                     result = cursor.fetchone()
                     
@@ -50,7 +46,6 @@ def register():
                         flash("Username already exists!", "error")
                         return redirect(url_for('register'))
 
-                    # Hash the password before saving to the database
                     hashed_password = generate_password_hash(password)
 
                     cursor.execute("""
@@ -66,7 +61,6 @@ def register():
 
     return render_template('register.html', title="Register")
 
-# Login route
 @app.route("/", methods=["GET", "POST"])
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -77,14 +71,13 @@ def login():
         try:
             with get_db_connection() as conn:
                 with conn.cursor() as cursor:
-                    # Check if username exists
                     cursor.execute("SELECT password FROM credentials WHERE username = %s", (username,))
                     stored_password = cursor.fetchone()
 
                     if not stored_password:
                         return redirect(url_for('register'))
                     elif stored_password and check_password_hash(stored_password[0], password):
-                        session['user_id'] = username  # Set user_id in session
+                        session['user_id'] = username  
                         flash("Login successful!", "success")
                         return redirect(url_for('home'))  
                     else:
